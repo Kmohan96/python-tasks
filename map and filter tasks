@@ -1,0 +1,53 @@
+list1= ["9876543210", "9123456780", "9988776655"]
+op=list(map(lambda x:"+91-"+x,list1))
+print(op)
+
+list1=[10,25,40,100]
+op=list(map(lambda x:x*83,list1))
+print(op)
+
+list1= ["harish@gmail.com", "abc@yahoo.com", "xyz@gmail.com"]
+op=list(filter(lambda x:x.endswith("@gmail.com"),list1))
+print(op)
+
+list1= ["Pen", "Notebook", "Laptop", "Charger", "Bag"]
+op=list(filter(lambda x:len(x)>=5,list1))
+print(op)
+
+list1= ["Harish", "Sushma", "Nandu"]
+op=list(map(lambda x:x.lower()+"@gmail.com",list1))
+print(op)
+
+
+list1= [2022, 2023, 2025, 2026]
+op=list(filter(lambda x:x<2025,list1))
+print(op)
+
+list1= ["1234567890123456", "9876543210987654"]
+op=list(map(lambda x: ("*"*(len(x)-4))+x[-4:],list1))
+print(op)
+
+list1=[25000, 45000, 60000, 15000, 80000]
+op=list(filter(lambda x:x>=40000,list1))
+print(op)
+
+list1= ["apple", "mango", "orange"]
+op=list(map(lambda x:"Product:"+x,list1))
+print(op)
+
+
+list1=[35,80,55,20,90]
+op=list(filter(lambda x:x>=40,list1))
+print(op)
+
+list1= ["abc123", "Admin@123", "hello", "Pa$$word"]
+op=list(filter(lambda x:len(x)>=8 and (('@' in x )or ('$' in x)),list1))
+print(op)
+
+list1= ["1000-CREDIT", "500-DEBIT", "1200-CREDIT", "200-DEBIT"]
+op=list(map(lambda x:int(x.split("-")[0]),list1))
+print(op)
+credits=list(filter(lambda x :"CREDIT" in x,list1))
+debits=list(filter(lambda x :"DEBIT" in x,list1))
+print(credits)
+# print(debits)
