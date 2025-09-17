@@ -1,0 +1,133 @@
+task:
+-----
+1.Syntax Error Check
+Write a small code snippet that will produce a compile-time (syntax) error. Then fix it.
+Example: Missing colon in an if statement.
+
+2.ZeroDivisionError
+Take two numbers from the user and perform division. Handle the case when the denominator is 0.
+
+3.ValueError
+Ask the user for their age. Handle the case when the user enters a string instead of a number.
+
+4.TypeError
+Try adding an integer and a string together. Handle the error.
+
+5.Finally Block
+Write a program that takes an integer input. No matter what error occurs, print "Program Completed" using finally.
+
+6.Multiple Exceptions
+Ask the user for two numbers and perform division. Handle both ZeroDivisionError and ValueError separately.
+
+7.File Handling Error
+Try to open a file named student_data.txt. If it doesn’t exist, show a proper error message.
+
+8.Catch All Exceptions
+Write a program that asks for a number and prints its square. Use Exception to handle any unexpected errors.
+
+9.Custom Error Message
+If the user enters a negative age, raise a ValueError with a custom message: "Age cannot be negative!".
+
+10.Safe Calculator
+Create a simple calculator (add, subtract, multiply, divide) that takes input from the user. Handle errors like invalid input, division by zero, etc
+
+
+
+try:
+    x=int(input("enter a number:"))
+    y=int(input("enter a number:"))
+    sum=x+y
+    print(sum)
+except:
+    print("some error occured")
+
+
+if True
+  print("hello")     
+
+
+try:
+   x=int(input("enter a number:"))
+   y=int(input("enter a number:"))
+   print(x/y)
+except ZeroDivisionError as e:
+   print("zero by division not possible",e)
+
+
+try:
+   a=int(input("enter your age:"))
+
+except ValueError:
+   print("pls enter number not string")
+
+
+   
+
+try:
+    x=int(input("enter a number:"))
+    y=input("enter a number:")
+    sum=x+y
+    print(sum)
+except TypeError:
+    print("some error occured")
+
+finally:
+    print("Program completed")
+
+-------------------------------
+try:
+    x=int(input("enter a number:"))
+    y=int(input("enter a number:"))
+    print(x/y)
+
+except ZeroDivisionError:
+    print("division by zero not possible")
+
+except ValueError:
+    print("enter correct value not string")
+
+except TypeError:
+    print("we can't add different types ")
+
+------------------------------------
+
+try:
+    open("./hello.txt","r")
+
+except FileNotFoundError:
+    print("pls check whether the given file exists or not")
+
+---------------------------------------
+try:
+    a=int(input("enter a number:"))
+    print(a**2)
+
+except ValueError:
+    print("pls enter only number not string")
+
+-----------------------------------------------------
+
+try:
+    a=int(input("enter a:"))
+    b=int(input("enter b:"))
+    choice=int(input("enter your choice(1/2/3/4):"))
+    if choice==1:
+        print(a+b)
+    elif choice==2:
+        print(a-b)
+    elif choice==3:
+        print(a*b)
+    elif choice==4:
+        print(a/b)
+
+except ZeroDivisionError:
+    print("division by zero not possible")
+
+except ValueError:
+    print("pls enter value not string or anything else")
+
+except TypeError:
+    print("we can add only similar data types")
+
+finally:
+    print("program executed successfully")
