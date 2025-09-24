@@ -1,0 +1,223 @@
+import mysql.connector
+from db import info
+
+try:
+    conn=mysql.connector.connect(**info)
+    print("connection successfull")
+
+except:
+    print("not able to connect")
+cursor=conn.cursor()
+
+#create database
+def createbase():
+    try:
+      query="create database if not exists 54r_batch"
+      cursor.execute(query)
+      print('database created successfully')
+    except:
+        print('something went wrong')
+
+#createbase()
+
+
+#create table in database
+cursor.execute("use 54r_batch")
+# create_table="""create table students (id int auto_increment primary key,
+#                 name varchar(100),email varchar(100),course varchar(100),
+#                 joined_date date)"""
+# cursor.execute(create_table)
+
+
+#insert single record
+def insertRecords(data):
+    try:      
+        insertquery="""insert into students(name,email,course,joined_date) 
+        values(%s,%s,%s,%s)"""
+        cursor.execute(insertquery,data)
+        print('data inserted successfully')
+    except Exception as e:
+        print("something went wrong", e)
+
+#insertRecords(('Nandu','Nandu@gmail.com','PFS','2025-06-08'))
+#insertRecords(('Akhil','akhil@gmail.com','DS','2025-05-09'))
+
+
+#insert multiple record
+def insertmanyrecords(data):
+    try:
+        insertquery="""insert into students(name,email,course,joined_date) values(%s,%s,%s,%s)"""
+        cursor.executemany(insertquery,data)
+        print("data inserted successful")
+    except Exception as e:
+        print("something went wrong",e)
+
+#insertmanyrecords([('john','john@gmail.com','JFS','2025-04-05'),
+#              ('suman','suman@gmail.com','JFS','2025-05-05'),
+#               ('Rakesh','rakesh@gmail.com','DS','2025-02-06')])
+
+
+def getrecords():
+    try:
+        query="""select * from students"""
+        cursor.execute(query)
+        results=cursor.fetchall()
+        for i in results:
+            print(i)
+
+    except Exception as e:
+        print("something went wrong",e) 
+
+#getrecords()
+
+#getrecordsbycourse
+def getrecordsbycourse(data):
+    try:
+        query="""select * from students where course=%s"""
+        cursor.execute(query,(data,))
+        result=cursor.fetchall()
+        for i in result:
+            print(i)
+
+    except Exception as e:
+        print("something went wrong",e)
+
+#getrecordsbycourse('DS')
+
+
+#getlimitedrecords
+def getlimitedrecords():
+    try:
+        query="""select * from students limit 2"""
+        cursor.execute(query)
+        result=cursor.fetchall()
+        for i in result:
+            print(i)
+    except Exception as e:
+        print("something went wrong",e)
+
+#getlimitedrecords()
+
+#getrecordsbyasc
+
+def getrecordsbyasc():
+    try:
+        query="""select * from students order by name asc"""
+        cursor.execute(query)
+        result=cursor.fetchall()
+        for i in result:
+            print(i)
+    except Exception as e:
+        print("something went wrong",e)
+
+#getrecordsbyasc()
+
+#getrecordsnamelike
+def getnamelike():
+    try:
+        query="""SELECT * FROM students WHERE name LIKE 'A%' """
+        cursor.execute(query)
+        result=cursor.fetchall()
+        for i in result:
+            print(i)
+    except Exception as e:
+        print("something went wrong",e)
+
+#getnamelike()
+
+
+#updatestudentcourse
+
+def updatestudentcourse(data):
+    try:
+        query="""update students set course=%s where email=%s"""
+        cursor.execute(query,data)
+        print("data updated successfully")
+    except Exception as e:
+        print("something is wrong",e)
+
+#updatestudentcourse(('datascience','john@gmail.com'))
+
+#updatestudentsmulipletables
+
+def updatestudentsmulipletables(data):
+    try:
+        query="""update students set course=%s, name=%s where email=%s"""
+        cursor.execute(query,data)
+        print("data updated successfully")
+    except Exception as e:
+        print("something is wrong",e)
+
+#updatestudentsmulipletables(('datascience','johndon','john@gmail.com'))
+
+
+#updatestudentbyid
+def updatestudentsbyid(data):
+    try:
+        query="""update students set course=%s where id=%s"""
+        cursor.execute(query,data)
+        print("data updated successfully")
+    except Exception as e:
+        print("something is wrong",e)
+
+#updatestudentsbyid(('jfs',4))
+
+
+
+#deletebyid
+
+def deletebyid(data):
+    try:
+        query="""delete from students where id=%s"""
+        cursor.execute(query,(data,))
+        print("deleted successfully")
+    except Exception as e:
+        print("something is wrong",e)
+#deletebyid(6)
+
+
+#deletebyemail
+
+def deletebyemail(data):
+    try:
+        query="""delete from students where email=%s"""
+        cursor.execute(query,(data,))
+        print("deleted successfully")
+    except Exception as e:
+        print("something is wrong",e)
+#deletebyemail("suman@gmail.com")
+
+#deleteentirerecords
+def deleteentirerecords(data):
+    try:
+        query="""truncate table students"""
+        cursor.execute(query)
+        print("deleted successfully")
+    except Exception as e:
+        print("something is wrong",e)
+#deleteentirerecords()
+
+
+conn.commit()
+cursor.close()
+conn.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
